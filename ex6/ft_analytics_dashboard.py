@@ -56,10 +56,33 @@ if __name__ == "__main__":
     print(f"Achievement counts: {achievement_counts}")
     
     print("\n=== Set Comprehension Examples ===")
-    players = []
+    players_name = []
     active_regions = []
+    achievements = {}
+    unique_achievements = []
     for i in players:
-        players.append(i["player"])
-        active_regions = [i["region"]]
-    print(f"Unique players: {set(players)}")
-    print(f"Unique achievements: {}")
+        players_name.append(str(i["player"]))
+        active_regions.append([i["region"]])
+    for i in players:
+        for j in i["achievements"]:
+            try:
+                achievements[j] += 1
+            except KeyError:
+                achievements[j] = 0
+    for key, value in achievements.items():
+        if value == 1:
+            unique_achievements.append(key)
+    regions = [r[0] for r in active_regions]
+    print(f"Unique players: {players_name}")
+    print(f"Unique achievements: {unique_achievements}")
+    print(f"Active regions: {set(regions)}")
+    
+    print("\n=== Combined Analysis===")
+    print(f"Total players: {len(players)}")
+    print(f"Total unique achievements: {len(achievements)}")
+    total_score = 0
+    for i in players:
+        total_score += i["score"]
+    print(f"Average score: {total_score / len(players)}")
+    sorted_players = sorted(players, key=lambda x: (x["score"], len(x["achievements"])))
+    print(f'Top performer: {sorted_players[-1]["player"]} ({sorted_players[-1]["score"]} points, {len(sorted_players[-1]["achievements"])} achievements)')
