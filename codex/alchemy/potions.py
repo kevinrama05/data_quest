@@ -2,7 +2,7 @@ from .elements import *
 
 
 def healing_potion() -> str:
-    return f"Healing potion brewed with {create_fire()} and {create_water}"
+    return f"Healing potion brewed with {create_fire()} and {create_water()}"
 
 
 def strength_potion() -> str:
