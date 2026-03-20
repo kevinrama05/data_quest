@@ -25,7 +25,7 @@ def main() -> None:
         oxygen_level=92.3,
         last_maintenance="2026-01-15T08:30:00",
         is_operational=True,
-        notes="All systems nominal"
+        notes="All systems nominal",
     )
 
     print("Valid station created:")
@@ -40,18 +40,18 @@ def main() -> None:
     print("\n" + "=" * 40)
 
     try:
-        invalid_station = SpaceStation(
+        SpaceStation(
             station_id="BAD01",
             name="Bad Station",
             crew_size=25,
             power_level=50.0,
             oxygen_level=50.0,
-            last_maintenance="2026-01-01T00:00:00"
+            last_maintenance="2026-01-01T00:00:00",
         )
     except ValidationError as e:
         print("Expected validation error:")
         for error in e.errors():
-            print(f"Input should be less than or equal to 20")
+            print("Input should be less than or equal to 20")
 
 
 if __name__ == "__main__":
